@@ -1,8 +1,19 @@
 import './App.css';
-import React from 'react';
+import {React, useEffect, useState} from 'react';
 import Form from './Components/Form'
+import { fetchReservations } from './apiCalls'
 
 function App() {
+  
+  const [res,setRes] = useState('');
+  
+  useEffect(() => {
+    fetchReservations()
+    .then(data => {
+      console.log(data)
+      setRes(data)})
+  },[])
+
   return (
     <div className="App">
       <h1 className='app-title'>Turing Cafe Reservations</h1>
