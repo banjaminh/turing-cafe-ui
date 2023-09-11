@@ -7,7 +7,8 @@ import Reservations from './Components/Reservations'
 function App() {
   
   const [res,setRes] = useState('');
-  
+  const [inputMessage, setInputMessage] = useState(false)
+
   useEffect(() => {
     fetchReservations()
     .then(data => {
@@ -27,6 +28,10 @@ function App() {
   }
 
   function addRes(name,date,time,guests){
+    if(!name || !date || !time || !guests ){
+      setInputMessage(true);
+      return;
+    }
     const newRes = {
       id: Date.now(),
       name: name,
@@ -34,6 +39,7 @@ function App() {
       date: date,
       number: guests,
     }
+    setInputMessage(false)
     postReservation(newRes)
     .then(data => setRes([...res, data]))
     .catch(error => alert(error.message))
@@ -42,6 +48,7 @@ function App() {
   return (
     <div className="App">
       <h1 className='app-title'>Turing Cafe Reservations</h1>
+      {inputMessage && <p className='input-message' >Please fill out all information</p>}
       <div className='resy-form'>
         <Form addRes={addRes}/>
       </div>

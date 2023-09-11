@@ -58,6 +58,14 @@ describe('Home Page', () => {
       cy.get('.resy-container').find('.res-card').last().contains('Banjamin')
 
     })
+
+    it('Should not allow you to make a reservation if all inputs are not entered', () => {
+      cy.get('.input-message').should('not.exist')
+      cy.get('.resy-form').find('button').click()
+      cy.get('.input-message').should('exist')
+      cy.get('.resy-form').find('#date').type('12/8').should('have.value','12/8')
+      cy.get('.input-message').should('exist')
+    })
       
 
   

@@ -18,7 +18,7 @@ function Form( {addRes} ){
             <input id='name' value={name} onChange={(e) => setName(e.target.value)} placeholder='Name'></input>
             <input id='date' value={date} onChange={(e) => setDate(e.target.value)} placeholder='Date(mm/dd)'></input>
             <input id='time' value={time} onChange={(e) => setTime(e.target.value)} placeholder='Time'></input>
-            <input id='guests' value={guests} onChange={(e) => setGuests(e.target.value)} placeholder='Number of guests (10 max)'></input>
+            <input id='guests' value={guests} onChange={(e) => setGuests(e.target.value)} placeholder='Number of guests'></input>
             <button id='res-button' onClick={gatherReservation}>Make Reservation</button>
         </>
 
