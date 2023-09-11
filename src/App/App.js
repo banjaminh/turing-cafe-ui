@@ -1,7 +1,7 @@
 import './App.css';
 import {React, useEffect, useState} from 'react';
 import Form from './Components/Form'
-import { fetchReservations } from './apiCalls'
+import { fetchReservations, postReservation, deleteReservation } from './apiCalls'
 import Reservations from './Components/Reservations'
 
 function App() {
@@ -13,10 +13,17 @@ function App() {
     .then(data => {
       console.log(data)
       setRes(data)})
-  },[])
+    .catch(error => {
+      alert(error.message)
+    })    
+    },[])
 
   function deleteRes(id){
-    console.log("DELETE RES: ", id);
+    deleteReservation(id)
+    .then(data => {
+      const updatedRes = res.filter(res => res.id != id);
+      setRes(updatedRes)
+    })
   }
 
   function addRes(name,date,time,guests){
@@ -27,7 +34,9 @@ function App() {
       date: date,
       number: guests,
     }
-    setRes([...res,newRes])
+    postReservation(newRes)
+    .then(data => setRes([...res, data]))
+    .catch(error => alert(error.message))
   }
 
   return (
