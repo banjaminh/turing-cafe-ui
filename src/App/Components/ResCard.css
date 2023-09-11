@@ -3,4 +3,16 @@
     flex-direction: column;
     margin: 20px;
     border: 2px solid green;
+    background-color: azure;
+    width: 300px;
+    border-radius: 12px;
+    height: 200px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.res-card button{
+    width: 90%;
+    background-color: rgb(45, 53, 45);
+    color: white;
 }

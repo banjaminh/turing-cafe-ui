@@ -19,11 +19,22 @@ function App() {
     console.log("DELETE RES: ", id);
   }
 
+  function addRes(name,date,time,guests){
+    const newRes = {
+      id: Date.now(),
+      name: name,
+      time: time,
+      date: date,
+      number: guests,
+    }
+    setRes([...res,newRes])
+  }
+
   return (
     <div className="App">
       <h1 className='app-title'>Turing Cafe Reservations</h1>
       <div className='resy-form'>
-        <Form />
+        <Form addRes={addRes}/>
       </div>
       {res && <div className='resy-container'>
         <Reservations res={res} deleteRes={deleteRes}/>
